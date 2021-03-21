@@ -11,9 +11,9 @@ fun ImageView.bindingLoadImage(url: String?) = loadImage(url)
 
 fun ImageView.loadImage(url: String?) {
     if (!url.isNullOrBlank()) {
-        Picasso.get().load(url).placeholder(R.drawable.ic_launcher_background).into(this)
+        Picasso.get().load(url).placeholder(R.drawable.placeholder_image_not_found).into(this)
     } else {
-        this.setImageResource(R.drawable.ic_launcher_background)
+        this.setImageResource(R.drawable.placeholder_image_not_found)
     }
 }
 

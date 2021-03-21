@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Android-MVVM-Demo</string>
+    <string name="app_name">Events</string>
+    <string name="event_image">Event image</string>
+    <string name="no_events_to_show">No events to show</string>
+    <string name="check_in">Check-in</string>
+    <string name="could_not_load_event">Could not load event</string>
+    <string name="alert_">Alert!</string>
+    <string name="my_events">My Events</string>
+    <string name="description">Description</string>
+    <string name="data_default">20/03/2021</string>
+    <string name="price_default">R$ 15,00</string>
+    <string name="show_on_map">Show on map</string>
+    <string name="share">Share</string>
+    <string name="title">Title</string>
+    <string name="carnival_party">Carnival Party</string>
 </resources>

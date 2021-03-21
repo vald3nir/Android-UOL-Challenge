@@ -28,10 +28,8 @@ class ListEventsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_events)
-
         setupViewModel()
         initObservers()
-
         initViews()
     }
 
@@ -42,17 +40,6 @@ class ListEventsActivity : AppCompatActivity() {
         )
         viewModel = ViewModelProvider(this).get(ListEventsViewModel::class.java)
         activityBinding.model = viewModel
-    }
-
-    private fun initViews() {
-
-        rvListEvents.setHasFixedSize(true)
-        rvListEvents.adapter = adapter
-
-        srlReloadList.setOnRefreshListener { viewModel?.loadEvents() }
-        srlReloadList.isRefreshing = true
-
-        viewModel?.loadEvents()
     }
 
     private fun initObservers() {
@@ -70,4 +57,16 @@ class ListEventsActivity : AppCompatActivity() {
             adapter.events = it
         })
     }
+
+    private fun initViews() {
+
+        rvListEvents.setHasFixedSize(true)
+        rvListEvents.adapter = adapter
+
+        srlReloadList.setOnRefreshListener { viewModel?.loadEvents() }
+        srlReloadList.isRefreshing = true
+
+        viewModel?.loadEvents()
+    }
+
 }

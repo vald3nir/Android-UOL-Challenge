@@ -1,8 +1,8 @@
 package com.vald3nir.data.mapper
 
 import com.vald3nir.data.models.Event
-import com.vald3nir.data.models.EventResponseBody
 import com.vald3nir.data.models.EventItemView
+import com.vald3nir.data.models.EventResponseBody
 import com.vald3nir.data.models.ListEventsResponseBody
 import java.text.SimpleDateFormat
 import java.util.*
@@ -17,6 +17,17 @@ fun List<Event>.toItemsListEvents() =
             dateCalendar = it.date,
         )
     }
+
+fun Event.toEventItemView() = EventItemView(
+    id = eventID,
+    image = image,
+    title = title,
+    description = description,
+    price = price?.toMoney(),
+    dateCalendar = date,
+    latitude = latitude,
+    longitude = longitude,
+)
 
 fun ListEventsResponseBody.toListEvents() =
     map {

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Eventos</string>
+    <string name="event_image">Imagem do evento</string>
+    <string name="no_events_to_show">Sem eventos para mostrar</string>
+    <string name="check_in">Check-in</string>
+    <string name="could_not_load_event">Não foi possível carregar o evento</string>
+    <string name="alert_">Alerta!</string>
+    <string name="my_events">Meus Eventos</string>
+    <string name="description">Descrição</string>
+    <string name="data_default">20/03/2021</string>
+    <string name="price_default">R$ 15,00</string>
+    <string name="show_on_map">Ver no mapa</string>
+    <string name="share">Compartilhar</string>
+    <string name="title">Título</string>
+    <string name="carnival_party">Festa de Carnaval</string>
+</resources>

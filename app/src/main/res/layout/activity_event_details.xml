@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemView"
+            type="com.vald3nir.data.models.EventItemView" />
+
+        <variable
+            name="checkInListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="shareListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="showMapListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".CollapsingToolbar">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleGravity="top"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/expandedImage"
+                    loadImage="@{itemView.image}"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:contentDescription="@string/event_image"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin">
+
+                    <TextView
+                        style="@style/TitleTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/description"
+                        android:textColor="@color/white" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".views.DetailEventActivity">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    style="@style/TitleTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{itemView.title}"
+                    tools:text="@string/title" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_between_views">
+
+                    <TextView
+                        android:id="@+id/txt_detail_event_price"
+                        style="@style/BoldTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@{itemView.price}"
+                        tools:text="@string/price_default" />
+
+                    <TextView
+                        android:id="@+id/txt_detail_event_date"
+                        style="@style/BoldTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/margin_between_views"
+                        android:text="@{itemView.dateCalendar}"
+                        tools:ignore="RelativeOverlap"
+                        tools:text="@string/data_default" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/txt_detail_event_description"
+                    style="@style/DefaultTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_between_views"
+                    android:text="@{itemView.description}"
+                    tools:text="@string/description" />
+
+                <Button
+                    android:id="@+id/btn_check_in"
+                    style="@style/DefaultButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_between_section"
+                    android:onClick="@{checkInListener}"
+                    android:text="@string/check_in" />
+
+                <Button
+                    android:id="@+id/btn_map"
+                    style="@style/DefaultButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_between_views"
+                    android:onClick="@{showMapListener}"
+                    android:text="@string/show_on_map" />
+
+                <Button
+                    android:id="@+id/btn_share"
+                    style="@style/DefaultButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_between_views"
+                    android:onClick="@{shareListener}"
+                    android:text="@string/share" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
