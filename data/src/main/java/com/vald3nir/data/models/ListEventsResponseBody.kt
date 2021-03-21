@@ -1,3 +1,3 @@
-package com.vald3nir.data.rest.model
+package com.vald3nir.data.models
 
 class ListEventsResponseBody : ArrayList<EventResponseBody>()

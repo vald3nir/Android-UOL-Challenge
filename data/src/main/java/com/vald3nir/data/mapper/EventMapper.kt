@@ -1,11 +1,22 @@
-package com.vald3nir.data.rest.mapper
+package com.vald3nir.data.mapper
 
 import com.vald3nir.data.models.Event
-import com.vald3nir.data.rest.model.EventResponseBody
-import com.vald3nir.data.rest.model.ListEventsResponseBody
+import com.vald3nir.data.models.EventResponseBody
+import com.vald3nir.data.models.ItemListEvents
+import com.vald3nir.data.models.ListEventsResponseBody
 import java.text.SimpleDateFormat
 import java.util.*
 
+fun List<Event>.toItemsListEvents() =
+    map {
+        ItemListEvents(
+            id = it.eventID,
+            image = it.image,
+            title = it.title,
+            price = it.price?.toMoney(),
+            dateCalendar = it.date,
+        )
+    }
 
 fun ListEventsResponseBody.toListEvents() =
     map {
@@ -38,4 +49,8 @@ fun Int.toDate(): String {
     val calendar = Calendar.getInstance()
     calendar.timeInMillis = this.toLong()
     return formatter.format(calendar.time)
+}
+
+fun Float.toMoney(): String {
+    return "R$ $this"
 }

@@ -34,8 +34,12 @@ android {
 }
 
 dependencies {
-    // Kotlin with coroutines
+
+    // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    kapt "com.android.databinding:compiler:3.4.0"
+
+    // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
     androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2") {
         exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
@@ -49,6 +53,7 @@ dependencies {
     def room_version = "2.2.6"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -1,11 +1,9 @@
 package com.vald3nir.data.rest
 
 import com.vald3nir.data.models.Event
-import com.vald3nir.data.rest.interfaces.CheckInService
-import com.vald3nir.data.rest.interfaces.EventsService
-import com.vald3nir.data.rest.mapper.toEvent
-import com.vald3nir.data.rest.mapper.toListEvents
-import com.vald3nir.data.rest.model.CheckInRequestBody
+import com.vald3nir.data.mapper.toEvent
+import com.vald3nir.data.mapper.toListEvents
+import com.vald3nir.data.models.CheckInRequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

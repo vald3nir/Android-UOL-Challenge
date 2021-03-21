@@ -1,4 +1,4 @@
-package com.vald3nir.data.rest.model
+package com.vald3nir.data.models
 
 data class EventResponseBody(
     val id: String?,

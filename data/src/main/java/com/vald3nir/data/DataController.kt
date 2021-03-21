@@ -5,7 +5,7 @@ import com.vald3nir.data.database.DatabaseHandler
 import com.vald3nir.data.models.Event
 import com.vald3nir.data.rest.RestClient
 
-class DataModule(context: Context) {
+class DataController(context: Context) {
 
     private val restClient = RestClient()
     private val database = DatabaseHandler(context)
