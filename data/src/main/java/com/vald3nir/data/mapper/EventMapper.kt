@@ -2,14 +2,14 @@ package com.vald3nir.data.mapper
 
 import com.vald3nir.data.models.Event
 import com.vald3nir.data.models.EventResponseBody
-import com.vald3nir.data.models.ItemListEvents
+import com.vald3nir.data.models.EventItemView
 import com.vald3nir.data.models.ListEventsResponseBody
 import java.text.SimpleDateFormat
 import java.util.*
 
 fun List<Event>.toItemsListEvents() =
     map {
-        ItemListEvents(
+        EventItemView(
             id = it.eventID,
             image = it.image,
             title = it.title,
