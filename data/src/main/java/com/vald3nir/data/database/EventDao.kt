@@ -9,10 +9,10 @@ import com.vald3nir.data.models.Event
 interface EventDao {
 
     @Query("SELECT * FROM event")
-    fun getAll(): List<Event>
+    fun getAll(): List<Event>?
 
     @Query("SELECT * FROM event WHERE event_id IN (:id)")
-    fun loadById(id: Int): Event
+    fun loadById(id: String?): Event?
 
 
 }
