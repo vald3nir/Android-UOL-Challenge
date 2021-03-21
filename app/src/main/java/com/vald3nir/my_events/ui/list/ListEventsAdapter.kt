@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.vald3nir.data.models.ItemListEvents
+import com.vald3nir.data.models.EventItemView
 import com.vald3nir.my_events.databinding.ListEventItemViewBinding
 
 class ListEventsAdapter(val listener: IListEventsAdapter) :
     RecyclerView.Adapter<ListEventsAdapter.ListEventsViewHolder>() {
 
-    var events: List<ItemListEvents> = listOf()
+    var events: List<EventItemView> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -34,10 +34,10 @@ class ListEventsAdapter(val listener: IListEventsAdapter) :
     inner class ListEventsViewHolder(private val itemBinding: ListEventItemViewBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(itemListEvents: ItemListEvents) {
-            itemBinding.itemListEvents = itemListEvents
+        fun bind(eventItemView: EventItemView) {
+            itemBinding.itemView = eventItemView
             itemBinding.listEventsListener = View.OnClickListener {
-                listener.seeDetail(itemListEvents.id)
+                listener.seeDetail(eventItemView.id)
             }
         }
     }

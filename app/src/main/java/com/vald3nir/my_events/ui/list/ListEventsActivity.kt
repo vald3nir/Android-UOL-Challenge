@@ -63,7 +63,7 @@ class ListEventsActivity : AppCompatActivity() {
             txvMessage?.isVisible = true
         })
 
-        viewModel?.listEvents?.observe(this, {
+        viewModel?.listOfEvents?.observe(this, {
             srlReloadList?.isRefreshing = false
             rvListEvents?.isVisible = true
             txvMessage?.isVisible = false
