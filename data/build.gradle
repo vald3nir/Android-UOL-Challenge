@@ -37,6 +37,9 @@ dependencies {
     // Kotlin with coroutines
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2") {
+        exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
+    }
 
     // Client HTTP
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -46,8 +49,6 @@ dependencies {
     def room_version = "2.2.6"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-    // optional - Test helpers
-    testImplementation "androidx.room:room-testing:$room_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
