@@ -1,6 +1,8 @@
 # Android-MVVM-Demo
 The project exemplifies the MVVM architecture used on android.
 
+## Comments:
+A module called "data" was created responsible for encapsulating and making available the information that will be presented on the screens, this information comes from rest services, database, etc.
 
 
 ## Libraries used:
