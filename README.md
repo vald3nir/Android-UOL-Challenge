@@ -7,6 +7,9 @@ A module called "data" was created responsible for encapsulating and making avai
 
 ## Libraries used:
 
+### Room [Database]
+https://developer.android.com/training/data-storage/room
+
 ### Retrofit [Client HTTP]
 https://github.com/square/retrofit
 
@@ -15,7 +18,6 @@ https://github.com/square/picasso
 
 ### Coroutines
 https://github.com/Kotlin/kotlinx.coroutines
-
 
 ## Screenshots
 
