@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.vald3nir.my_events">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -16,15 +17,19 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
 
-        <activity android:name="com.vald3nir.my_events.ui.details.EventDetailsActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
-        <activity android:name="com.vald3nir.my_events.ui.list.ListEventsActivity">
+        <activity android:name=".ui.map.MapsActivity" />
+        <activity android:name=".ui.chekin.CheckInActivity" />
+        <activity android:name=".ui.details.EventDetailsActivity" />
+        <activity android:name=".ui.list.ListEventsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

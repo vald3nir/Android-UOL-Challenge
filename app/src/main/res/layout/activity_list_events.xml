@@ -10,20 +10,16 @@
             type="com.vald3nir.my_events.ui.list.ListEventsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.list.ListEventsActivity">
-
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -40,19 +36,18 @@
             style="@style/DefaultTextViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:text="@string/no_events_to_show"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appbar" />
+            android:visibility="gone" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/srlReloadList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_below="@id/appbar"
+            android:layout_marginTop="@dimen/margin_between_section"
+            android:layout_marginBottom="@dimen/margin_between_section"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +62,7 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </layout>
 

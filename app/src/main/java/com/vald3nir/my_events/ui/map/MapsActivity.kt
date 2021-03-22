@@ -36,7 +36,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        toolbar.setNavigationOnClickListener { finish() }
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)

@@ -1,22 +1,20 @@
 package com.vald3nir.my_events.ui.details
 
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.vald3nir.my_events.R
+import com.vald3nir.my_events.core.BaseActivity
 import com.vald3nir.my_events.databinding.ActivityEventDetailsBinding
 import com.vald3nir.my_events.ui.chekin.CheckInActivity
 import com.vald3nir.my_events.ui.map.MapsActivity
 import kotlinx.android.synthetic.main.activity_event_details.*
 
 
-class EventDetailsActivity : AppCompatActivity() {
+class EventDetailsActivity : BaseActivity() {
 
     private var viewModel: DetailEventViewModel? = null
     private lateinit var activityBinding: ActivityEventDetailsBinding
@@ -46,7 +44,6 @@ class EventDetailsActivity : AppCompatActivity() {
         activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_event_details)
         viewModel = ViewModelProvider(this).get(DetailEventViewModel::class.java)
         viewModel?.init(intent)
-
     }
 
     private fun initObservers() {
@@ -73,7 +70,7 @@ class EventDetailsActivity : AppCompatActivity() {
     private fun initViews() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
-        toolbar.setNavigationOnClickListener { onBackPressed() }
+        toolbar.setNavigationOnClickListener { finish() }
     }
 
     private fun showErrorLoadEventAlertDialog() {
@@ -82,17 +79,6 @@ class EventDetailsActivity : AppCompatActivity() {
 
     private fun showErrorShareAlertDialog() {
         showAlertDialog(R.string.it_was_not_possible_to_share_the_content)
-    }
-
-    private fun showAlertDialog(message: Int, exitScreen: Boolean = false) {
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.alert_))
-            .setIcon(android.R.drawable.ic_dialog_alert)
-            .setMessage(getString(message))
-            .setPositiveButton(android.R.string.ok) { dialogInterface: DialogInterface, _: Int ->
-                dialogInterface.dismiss()
-                if (exitScreen) onBackPressed()
-            }.show()
     }
 
     private fun goToCheckInActivity() {

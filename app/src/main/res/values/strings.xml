@@ -6,6 +6,7 @@
     <string name="could_not_load_event">Could not load event</string>
     <string name="alert_">Alert!</string>
     <string name="my_events">My Events</string>
+    <string name="my_event">My Event</string>
     <string name="description">Description</string>
     <string name="data_default">20/03/2021</string>
     <string name="price_default">R$ 15,00</string>
@@ -13,4 +14,13 @@
     <string name="share">Share</string>
     <string name="title">Title</string>
     <string name="carnival_party">Carnival Party</string>
+    <string name="location">Location</string>
+    <string name="event">Event</string>
+    <string name="it_was_not_possible_to_share_the_content">It was not possible to share the content</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="invalid_email_message">Please enter a valid email</string>
+    <string name="invalid_name_message">Please enter a valid name</string>
+    <string name="error_generic_message">An error occurred. Please try again.</string>
+    <string name="success_check_in_message">Check-in successfully</string>
 </resources>
