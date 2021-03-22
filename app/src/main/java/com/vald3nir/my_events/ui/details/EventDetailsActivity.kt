@@ -4,12 +4,15 @@ import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.vald3nir.my_events.R
 import com.vald3nir.my_events.databinding.ActivityEventDetailsBinding
+import com.vald3nir.my_events.ui.chekin.CheckInActivity
+import com.vald3nir.my_events.ui.map.MapsActivity
 import kotlinx.android.synthetic.main.activity_event_details.*
 
 
@@ -47,12 +50,23 @@ class EventDetailsActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        viewModel?.error?.observe(this, {
-            showAlertDialog()
-        })
 
-        viewModel?.itemView?.observe(this, {
-            activityBinding.itemView = it
+        activityBinding.checkInListener = View.OnClickListener { goToCheckInActivity() }
+        activityBinding.shareListener = View.OnClickListener { viewModel?.shareContent() }
+
+        viewModel?.errorLoadEvent?.observe(this, { showErrorLoadEventAlertDialog() })
+        viewModel?.errorShare?.observe(this, { showErrorShareAlertDialog() })
+
+        viewModel?.contentToBeShare?.observe(this, { shareEvent(it) })
+
+        viewModel?.itemView?.observe(this, { itemView ->
+            activityBinding.itemView = itemView
+            activityBinding.showMapListener = View.OnClickListener {
+                goToSeeEventOnMap(
+                    itemView.latitude?.toDouble(),
+                    itemView.longitude?.toDouble()
+                )
+            }
         })
     }
 
@@ -62,15 +76,39 @@ class EventDetailsActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 
-    private fun showAlertDialog() {
+    private fun showErrorLoadEventAlertDialog() {
+        showAlertDialog(R.string.could_not_load_event, exitScreen = true)
+    }
+
+    private fun showErrorShareAlertDialog() {
+        showAlertDialog(R.string.it_was_not_possible_to_share_the_content)
+    }
+
+    private fun showAlertDialog(message: Int, exitScreen: Boolean = false) {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.alert_))
             .setIcon(android.R.drawable.ic_dialog_alert)
-            .setMessage(getString(R.string.could_not_load_event))
-            .setPositiveButton(android.R.string.ok) { dialogInterface: DialogInterface, i: Int ->
+            .setMessage(getString(message))
+            .setPositiveButton(android.R.string.ok) { dialogInterface: DialogInterface, _: Int ->
                 dialogInterface.dismiss()
-                onBackPressed()
-            }
-            .show()
+                if (exitScreen) onBackPressed()
+            }.show()
+    }
+
+    private fun goToCheckInActivity() {
+        CheckInActivity.startCheckInActivity(this, eventID = intent?.getStringExtra(EVENT_ID))
+    }
+
+    private fun goToSeeEventOnMap(latitude: Double?, longitude: Double?) {
+        MapsActivity.startMapsActivity(this, latitude, longitude)
+    }
+
+    private fun shareEvent(text: String) {
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text)
+            type = "text/plain"
+        }
+        startActivity(Intent.createChooser(sendIntent, getString(R.string.event)))
     }
 }

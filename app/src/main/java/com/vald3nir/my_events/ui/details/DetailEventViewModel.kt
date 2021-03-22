@@ -14,8 +14,14 @@ class DetailEventViewModel : BaseViewModel() {
 
     private var eventId: String? = null
 
-    private val _error = MutableLiveData<Unit>()
-    val error: LiveData<Unit> = _error
+    private val _errorLoadEvent = MutableLiveData<Unit>()
+    val errorLoadEvent: LiveData<Unit> = _errorLoadEvent
+
+    private val _errorShare = MutableLiveData<Unit>()
+    val errorShare: LiveData<Unit> = _errorShare
+
+    private val _contentToBeShare = MutableLiveData<String>()
+    val contentToBeShare: LiveData<String> = _contentToBeShare
 
     private val _itemView = MutableLiveData<EventItemView>()
     val itemView: LiveData<EventItemView> = _itemView
@@ -33,8 +39,20 @@ class DetailEventViewModel : BaseViewModel() {
             if (eventItemView != null) {
                 _itemView.postValue(eventItemView!!)
             } else {
-                _error.postValue(Unit)
+                _errorLoadEvent.postValue(Unit)
             }
         }
+    }
+
+    fun shareContent() {
+        if (_itemView.value == null) {
+            _errorShare.postValue(Unit)
+        } else {
+            _contentToBeShare.postValue(createContentToBeShare(_itemView.value!!))
+        }
+    }
+
+    private fun createContentToBeShare(itemView: EventItemView): String {
+        return itemView.title + "\n" + itemView.description
     }
 }
