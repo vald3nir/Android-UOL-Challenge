@@ -17,7 +17,7 @@ https://github.com/Kotlin/kotlinx.coroutines
 
 ## Screenshots
 
-![alt text](/images/home.png)
+![alt text](/images/home.png =100x20)
 ![alt text](/images/description_01.png)
 ![alt text](/images/description_02.png)
 ![alt text](/images/checkin.png)
