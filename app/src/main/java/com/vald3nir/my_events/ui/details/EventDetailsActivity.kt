@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.vald3nir.my_events.R
 import com.vald3nir.my_events.core.BaseActivity
 import com.vald3nir.my_events.databinding.ActivityEventDetailsBinding
-import com.vald3nir.my_events.ui.chekin.CheckInActivity
+import com.vald3nir.my_events.ui.checkin.CheckInActivity
 import com.vald3nir.my_events.ui.map.MapsActivity
 import kotlinx.android.synthetic.main.activity_event_details.*
 

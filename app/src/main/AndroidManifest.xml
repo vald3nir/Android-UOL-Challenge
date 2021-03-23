@@ -22,7 +22,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".ui.map.MapsActivity" />
-        <activity android:name=".ui.chekin.CheckInActivity" />
+        <activity android:name=".ui.checkin.CheckInActivity" />
         <activity android:name=".ui.details.EventDetailsActivity" />
         <activity android:name=".ui.list.ListEventsActivity">
             <intent-filter>

@@ -1,4 +1,4 @@
-package com.vald3nir.my_events.ui.chekin
+package com.vald3nir.my_events.ui.checkin
 
 import android.app.Activity
 import android.content.Intent
