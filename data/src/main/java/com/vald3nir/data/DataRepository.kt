@@ -8,7 +8,7 @@ import com.vald3nir.data.exceptions.InvalidNameException
 import com.vald3nir.data.models.Event
 import com.vald3nir.data.rest.RestClient
 
-class DataController(context: Context) {
+class DataRepository(context: Context) {
 
     private val restClient = RestClient()
     private val database = DatabaseHandler(context)

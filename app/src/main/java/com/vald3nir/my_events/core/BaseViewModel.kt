@@ -1,7 +1,7 @@
 package com.vald3nir.my_events.core
 
 import androidx.lifecycle.ViewModel
-import com.vald3nir.data.DataController
+import com.vald3nir.data.DataRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -11,7 +11,7 @@ open class BaseViewModel : ViewModel() {
 
     private val viewModelJob = SupervisorJob()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    val dataController = DataController(MainApplication.applicationContext())
+    val dataController = DataRepository(MainApplication.applicationContext())
 
 
     fun launch(block: suspend () -> Unit) {
