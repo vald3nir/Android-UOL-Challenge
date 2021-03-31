@@ -5,18 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.vald3nir.my_events.R
-import com.vald3nir.my_events.core.BaseActivity
+import com.vald3nir.my_events.core.base.BaseActivity
 import com.vald3nir.my_events.databinding.ActivityEventDetailsBinding
 import com.vald3nir.my_events.ui.checkin.CheckInActivity
 import com.vald3nir.my_events.ui.map.MapsActivity
 import kotlinx.android.synthetic.main.activity_event_details.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class EventDetailsActivity : BaseActivity() {
+class DetailEventActivity : BaseActivity() {
 
-    private var viewModel: DetailEventViewModel? = null
+    private val viewModel by viewModel<DetailEventViewModel>()
     private lateinit var activityBinding: ActivityEventDetailsBinding
 
     companion object {
@@ -24,7 +24,7 @@ class EventDetailsActivity : BaseActivity() {
         const val EVENT_ID = "EVENT_ID"
 
         fun startEventDetailsActivity(activity: Activity, eventID: String?) {
-            val intent = Intent(activity, EventDetailsActivity::class.java)
+            val intent = Intent(activity, DetailEventActivity::class.java)
             intent.putExtra(EVENT_ID, eventID)
             activity.startActivity(intent)
         }
@@ -37,26 +37,25 @@ class EventDetailsActivity : BaseActivity() {
         setupViewModel()
         initObservers()
         initViews()
-        viewModel?.loadEvent()
+        viewModel.loadEvent()
     }
 
     private fun setupViewModel() {
         activityBinding = DataBindingUtil.setContentView(this, R.layout.activity_event_details)
-        viewModel = ViewModelProvider(this).get(DetailEventViewModel::class.java)
-        viewModel?.init(intent)
+        viewModel.init(intent)
     }
 
     private fun initObservers() {
 
         activityBinding.checkInListener = View.OnClickListener { goToCheckInActivity() }
-        activityBinding.shareListener = View.OnClickListener { viewModel?.shareContent() }
+        activityBinding.shareListener = View.OnClickListener { viewModel.shareContent() }
 
-        viewModel?.errorLoadEvent?.observe(this, { showErrorLoadEventAlertDialog() })
-        viewModel?.errorShare?.observe(this, { showErrorShareAlertDialog() })
+        viewModel.errorLoadEvent.observe(this, { showErrorLoadEventAlertDialog() })
+        viewModel.errorShare.observe(this, { showErrorShareAlertDialog() })
 
-        viewModel?.contentToBeShare?.observe(this, { shareEvent(it) })
+        viewModel.contentToBeShare.observe(this, { shareEvent(it) })
 
-        viewModel?.itemView?.observe(this, { itemView ->
+        viewModel.itemView.observe(this, { itemView ->
             activityBinding.itemView = itemView
             activityBinding.showMapListener = View.OnClickListener {
                 goToSeeEventOnMap(

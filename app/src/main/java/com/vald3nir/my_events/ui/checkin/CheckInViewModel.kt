@@ -3,15 +3,16 @@ package com.vald3nir.my_events.ui.checkin
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.vald3nir.data.DataRepository
 import com.vald3nir.data.exceptions.InvalidEmailException
 import com.vald3nir.data.exceptions.InvalidNameException
 import com.vald3nir.my_events.R
-import com.vald3nir.my_events.core.BaseViewModel
-import com.vald3nir.my_events.ui.details.EventDetailsActivity
+import com.vald3nir.my_events.core.base.BaseViewModel
+import com.vald3nir.my_events.ui.details.DetailEventActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class CheckInViewModel : BaseViewModel() {
+class CheckInViewModel(private val dataRepository: DataRepository) : BaseViewModel() {
 
     private var eventId: String? = null
 
@@ -29,7 +30,7 @@ class CheckInViewModel : BaseViewModel() {
 
 
     fun init(intent: Intent?) {
-        this.eventId = intent?.getStringExtra(EventDetailsActivity.EVENT_ID)
+        this.eventId = intent?.getStringExtra(DetailEventActivity.EVENT_ID)
     }
 
     fun makeCheckIn(email: String?, name: String?) {
@@ -38,7 +39,7 @@ class CheckInViewModel : BaseViewModel() {
 
             withContext(Dispatchers.IO) {
                 try {
-                    dataController.makeCheckIn(eventId = eventId, email = email, name = name)
+                    dataRepository.makeCheckIn(eventId = eventId, email = email, name = name)
                 } catch (e: Exception) {
                     exception = e
                 }

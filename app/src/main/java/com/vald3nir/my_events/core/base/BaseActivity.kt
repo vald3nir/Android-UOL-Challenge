@@ -1,4 +1,4 @@
-package com.vald3nir.my_events.core
+package com.vald3nir.my_events.core.base
 
 import android.content.DialogInterface
 import android.widget.Toast

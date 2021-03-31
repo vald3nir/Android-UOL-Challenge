@@ -3,14 +3,15 @@ package com.vald3nir.my_events.ui.details
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.vald3nir.data.DataRepository
 import com.vald3nir.data.mapper.toEventItemView
 import com.vald3nir.data.models.EventItemView
-import com.vald3nir.my_events.core.BaseViewModel
-import com.vald3nir.my_events.ui.details.EventDetailsActivity.Companion.EVENT_ID
+import com.vald3nir.my_events.core.base.BaseViewModel
+import com.vald3nir.my_events.ui.details.DetailEventActivity.Companion.EVENT_ID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class DetailEventViewModel : BaseViewModel() {
+class DetailEventViewModel(private val dataRepository: DataRepository) : BaseViewModel() {
 
     private var eventId: String? = null
 
@@ -34,7 +35,7 @@ class DetailEventViewModel : BaseViewModel() {
         launch {
             var eventItemView: EventItemView?
             withContext(Dispatchers.IO) {
-                eventItemView = dataController.getEvent(eventId)?.toEventItemView()
+                eventItemView = dataRepository.getEvent(eventId)?.toEventItemView()
             }
             if (eventItemView != null) {
                 _itemView.postValue(eventItemView!!)

@@ -1,6 +1,5 @@
 package com.vald3nir.data
 
-import android.content.Context
 import com.vald3nir.data.database.DatabaseHandler
 import com.vald3nir.data.exceptions.InvalidEmailException
 import com.vald3nir.data.exceptions.InvalidEventIDException
@@ -8,10 +7,7 @@ import com.vald3nir.data.exceptions.InvalidNameException
 import com.vald3nir.data.models.Event
 import com.vald3nir.data.rest.RestClient
 
-class DataRepository(context: Context) {
-
-    private val restClient = RestClient()
-    private val database = DatabaseHandler(context)
+class DataRepository(private val database: DatabaseHandler, private val restClient: RestClient) {
 
     suspend fun listEvents(): List<Event>? {
         return try {
