@@ -19,6 +19,9 @@ https://github.com/square/picasso
 ### Coroutines
 https://github.com/Kotlin/kotlinx.coroutines
 
+### Koin (dependency injection framework)
+https://github.com/InsertKoinIO/koin
+
 ## Screenshots
 
 ![alt text](/images/home.png)
