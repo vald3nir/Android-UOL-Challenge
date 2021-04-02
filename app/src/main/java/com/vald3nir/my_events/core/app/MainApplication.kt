@@ -5,24 +5,9 @@ import android.content.Context
 import com.vald3nir.data.dataModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
+import org.koin.core.context.unloadKoinModules
 
 class MainApplication : Application() {
-
-    init {
-        instance = this
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        // start koin with the module list
-        startKoin {
-            androidContext(this@MainApplication)
-            modules(
-                dataModule,
-                appModule,
-            )
-        }
-    }
 
     companion object {
 
@@ -33,4 +18,25 @@ class MainApplication : Application() {
         }
     }
 
+    init {
+        instance = this
+    }
+
+    private val modules by lazy {
+        listOf(dataModule, appModule)
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        // start koin with the module list
+        startKoin {
+            androidContext(this@MainApplication)
+            modules(modules)
+        }
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
+        unloadKoinModules(modules)
+    }
 }
