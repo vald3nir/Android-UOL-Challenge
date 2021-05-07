@@ -1,4 +1,4 @@
-# Android-MVVM-Demo
+# Android-UOL-Challenge
 The project exemplifies the MVVM architecture used on android.
 
 ## Comments:
